@@ -1,13 +1,27 @@
-TEMPLATE
+TLBF
 ========
 
-This is a basic template for my library projects. It includes the my testsuite and the standard files.
+Tiny Little BrainF*** library and interpreter.
 
-To use this template. All the files should probably be renamed as templ is a baaaaaad prefix for anything useful. However, it's a template. It works as such.
+This is not the smallest BF interpreter ever written. 
+It's not the most complete BF interpreter ever written.
 
-On linux it is possible to run the setup script to do the renaming eg (for a library called society):
+The reason for tlbf's existence is that I set myself a task to write a
+[bf compiler for Intel 8080](https://github.com/nistur/8080bf) however
+I then decided that I wanted to be able to test any bf I was writing a
+bit easier, so I set about shaving my very own yak and writing an
+interpreter. 
 
-~~~~~~
-./setup.sh society soc SOC
-~~~~~~
-The first parameter is the name of the name of the library, soc and SOC are prefixes used in the library functions and defines
+>It should be noted that something seems to be a bit broken with tlbf
+>right now, it segfaults on anything more complex than hello world.
+
+The idea behind tlbf is that is supports bf syntax, but also should be
+easy to provide support for other substitution syntax, such as
+Ook. Also planned are extensions which provide things such as
+procedures as defined by pbrain and such.
+
+>The 'Tiny Little' creed:
+>* Keep the interface small
+>* Keep the dependencies minimal
+>* Keep the implementation (relatively) clean and portable
+
