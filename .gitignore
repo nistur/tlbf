@@ -1,0 +1,15 @@
+#temporary files
+*~
+*#*
+*#*#
+
+#premake generated makefiles
+Makefile
+*.make
+
+# build output
+build/
+obj/
+
+#I'm using bf/ to store temporary test programs, so ignore it
+bf/

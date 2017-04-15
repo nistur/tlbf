@@ -1,10 +1,10 @@
-solution "template"
+solution "tlbf"
 language "C++"
 configurations { "Debug", "Release" }
 includedirs { "include", "src/include" }
 files { "include/**.h" }
 
-defines { "TMPL_BUILD" }
+defines { "TLBF_BUILD" }
 
 configuration "Debug"
 defines { "DEBUG" }
@@ -19,20 +19,26 @@ flags { "OptimizeSpeed",
 	"NoFramePointer" }
 targetdir "build/release"
 
-project "template"
+project "tlbf"
 kind "StaticLib"
 files { "src/**.c", "src/**.cpp" }
 
-project "template-dynamic"
+project "tlbf-dynamic"
 kind "SharedLib"
 files { "src/**.c", "src/**.cpp" }
-targetname "template"
+targetname "tlbf"
+
+project "tlbf-interpreter"
+targetname "tlbf"
+kind "ConsoleApp"
+files { "interpreter/**.c" }
+links { "tlbf" }
 
 project "tests"
 kind "ConsoleApp"
 files { "tests/**.cpp" }
-links { "template" }
+links { "tlbf" }
 configuration "Debug"
-postbuildcommands("build/debug/tests")
+--postbuildcommands("build/debug/tests")
 configuration "Release"
 postbuildcommands("build/release/tests")
