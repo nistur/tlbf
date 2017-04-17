@@ -61,6 +61,17 @@ tlbfReturn tlbfBfDecrementPtr (tlbfContext* context)
 #endif
     tlbfReturnCode(SUCCESS);
 }
+int numOpenLoops = 0;
+#define TLBF_COUNT_LOOP(cnt, list)		       \
+    int cnt = 0;				       \
+    {						       \
+	tlbfLoopNode* _ = list;			       \
+	while(_)				       \
+	{					       \
+	    cnt++;				       \
+	    _ = _->m_Next;			       \
+	}					       \
+    }
 
 tlbfReturn tlbfBfLoopStart    (tlbfContext* context)
 {
@@ -73,19 +84,24 @@ tlbfReturn tlbfBfLoopStart    (tlbfContext* context)
 	node->m_Next = context->m_LastLoopNode;
 	context->m_LastLoopNode = node;
 	context->m_LastLoopNode->m_LoopStart = context->m_CurrentInstruction;
+	numOpenLoops++;
+	TLBF_COUNT_LOOP(numUsed, context->m_LastLoopNode);
+	TLBF_COUNT_LOOP(numFree, context->m_FreeLoopNode);
+//	printf("Loop Start: %d (%d/%d)\n", numOpenLoops, numUsed, numFree);
     }
     else
     {
-	int loopCount = 0;
+	int loopCount = 1;
 	while(1)
 	{
 	    tlbfReturnCheck(context->m_Next(context));
 	    if(*context->m_CurrentInstruction == '[')
 		loopCount++;
 	    else if(*context->m_CurrentInstruction == ']')
-		if(--loopCount)
+		if((--loopCount) <= 0)
 		    break;
 	}
+//	printf("Loop Start-End\n");
     }
 
     tlbfReturnCode(SUCCESS);
@@ -101,10 +117,15 @@ tlbfReturn tlbfBfLoopEnd      (tlbfContext* context)
 	context->m_FreeLoopNode = context->m_LastLoopNode;
 	context->m_LastLoopNode = context->m_FreeLoopNode->m_Next;
 	context->m_FreeLoopNode->m_Next = prevFree;
+	numOpenLoops--;
+	TLBF_COUNT_LOOP(numUsed, context->m_LastLoopNode);
+	TLBF_COUNT_LOOP(numFree, context->m_FreeLoopNode);
+//	printf("Loop Start: %d (%d/%d)\n", numOpenLoops, numUsed, numFree);
     }
     else
     {
 	context->m_CurrentInstruction = context->m_LastLoopNode->m_LoopStart;
+//	printf("Loop\n");
     }
 
     tlbfReturnCode(SUCCESS);

@@ -24,7 +24,7 @@
 #endif
 
 #ifndef  TLBF_LOOP_COUNT
-# define TLBF_LOOP_COUNT 40960
+# define TLBF_LOOP_COUNT 4096
 #endif /*TLBF_LOOP_COUNT*/
 
 #ifndef TLBF_MAX_INSTRUCTIONS

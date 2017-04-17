@@ -1,41 +1,24 @@
 #include "tlbf_internal.h"
 
-
 tlbfReturn tlbfBfGetSymbol(tlbfContext* context, tlbfSymbol* symbol)
 {
     TLBF_NULL_CHECK(context, NO_CONTEXT);
     TLBF_NULL_CHECK(symbol, INVALID_INPUT);
 
     *symbol = TLBF_SYMBOL_UNKNOWN;
-    switch(*context->m_CurrentInstruction)
+    if(context->m_CurrentInstruction == '\0')
     {
-    case '+':
-	*symbol = TLBF_SYMBOL_INCREMENT_CELL;
-	break;
-    case '-':
-	*symbol = TLBF_SYMBOL_DECREMENT_CELL;
-	break;
-    case '<':
-	*symbol = TLBF_SYMBOL_DECREMENT_PTR;
-	break;
-    case '>':
-	*symbol = TLBF_SYMBOL_INCREMENT_PTR;
-	break;
-    case '[':
-	*symbol = TLBF_SYMBOL_LOOP_START;
-	break;
-    case ']':
-	*symbol = TLBF_SYMBOL_LOOP_END;
-	break;
-    case ',':
-	*symbol = TLBF_SYMBOL_INPUT;
-	break;
-    case '.':
-	*symbol = TLBF_SYMBOL_OUTPUT;
-	break;
-    case '\0':
 	*symbol = TLBF_SYMBOL_EOF;
-	break;
+	tlbfReturnCode(EOF);
+    }
+
+    for(tlbfSymbol iSym = TLBF_SYMBOL_INCREMENT_CELL; iSym <= TLBF_SYMBOL_OUTPUT; ++iSym)
+    {
+	if(*context->m_CurrentInstruction  == tlbfBfCommands[iSym])
+	{
+	    *symbol = iSym;
+	    break;
+	}
     }
 
     tlbfReturnCode(SUCCESS);
