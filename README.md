@@ -12,9 +12,6 @@ I then decided that I wanted to be able to test any bf I was writing a
 bit easier, so I set about shaving my very own yak and writing an
 interpreter. 
 
->It should be noted that something seems to be a bit broken with tlbf
->right now, it segfaults on anything more complex than hello world.
-
 The idea behind tlbf is that is supports bf syntax, but also should be
 easy to provide support for other substitution syntax, such as
 Ook. Also planned are extensions which provide things such as
