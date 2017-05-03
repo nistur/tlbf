@@ -10,6 +10,7 @@ typedef unsigned char tlbfLangFlags;
 #define TLBF_LANG_BF    0x01
 #define TLBF_LANG_FF    0x02
 #define TLBF_LANG_OOK   0x03
+#define TLBF_LANG_MASK  0x0F
 
 #define TLBF_EXT_PBRAIN 0x10
 
