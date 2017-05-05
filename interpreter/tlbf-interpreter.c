@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 
     tlbfLangFlags flags;
     
-    for(int i = 0; i < argc; ++i)
+    for(int i = 1; i < argc; ++i)
     {
 	int skip = 1;
 	if(argv[i][0] == '-')
@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 	    if(argv[i][1] != '-')
 	    {
 		// single dash, this should be a list of short flags
-		int len = strlen(argv[i])-1;
+		int len = strlen(argv[i]);
 		for(int j = 1; j < len; ++j)
 		{
 		    switch(argv[i][j])

@@ -12,6 +12,7 @@
 
 static const char* tlbfOokCommands[] = 
 {
+    0, // unknown symbol
     TLBF_OOK_INCREMENT_CELL,
     TLBF_OOK_DECREMENT_CELL,
     TLBF_OOK_INCREMENT_PTR,
@@ -44,7 +45,7 @@ tlbfReturn tlbfOokGetSymbol(tlbfContext* context, tlbfSymbol* symbol)
     }
     else
     {
-	for(tlbfSymbol iSym = TLBF_SYMBOL_INCREMENT_PTR; iSym <= TLBF_SYMBOL_OUTPUT; ++iSym)
+	for(tlbfSymbol iSym = TLBF_SYMBOL_INCREMENT_CELL; iSym <= TLBF_SYMBOL_OUTPUT; ++iSym)
 	{
 	    if(strcmp(command, tlbfOokCommands[iSym]) == 0)
 	    {
