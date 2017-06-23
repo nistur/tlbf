@@ -244,14 +244,16 @@ TEST(Cat, Smoke, 0.0f,
 	 tlbfTerminateContext(&m_data.context);
      },
      {
-	 static const char* program = ".[,.]";
+	 static const char* program = ",[.,]";
 	 static const char* input = "Hello, World!";
 	 ClearStdout();
 
 	 tlbfSetProgram(m_data.context, program);
+	 InjectStdin(input);
 	 tlbfRun(m_data.context);
 
-	 ASSERT(strcmp(GetStdout(), input) == 0);
+	 const char* out = GetStdout();
+	 ASSERT(strcmp(out, input) == 0);
      },
      {
 	 tlbfContext* context;

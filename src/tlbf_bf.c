@@ -28,6 +28,8 @@ tlbfReturn tlbfBfNext(tlbfContext* context)
 {
     TLBF_NULL_CHECK(context, NO_CONTEXT);
 
+    if(*context->m_CurrentInstruction == '\0')
+	tlbfReturnCode(EOF);
     context->m_CurrentInstruction++;
     if(*context->m_CurrentInstruction == '\0')
 	tlbfReturnCode(EOF);
