@@ -25,12 +25,13 @@ typedef const char* tlbfProgram;
 
 typedef struct _tlbfContext tlbfContext;
 
-#define TLBF_SUCCESS       0
-#define TLBF_NO_CONTEXT    1
-#define TLBF_EOF           2
-#define TLBF_OUT_OF_RANGE  3
-#define TLBF_INVALID_INPUT 4
-
+#define TLBF_SUCCESS           0
+#define TLBF_NO_CONTEXT        1
+#define TLBF_EOF               2
+#define TLBF_OUT_OF_RANGE      3
+#define TLBF_INVALID_INPUT     4
+#define TLBF_LANGUAGE_MISMATCH 5
+    
 TLBF_EXPORT tlbfReturn   tlbfInitContext     (tlbfContext** context);
 TLBF_EXPORT tlbfReturn   tlbfTerminateContext(tlbfContext** context);
 

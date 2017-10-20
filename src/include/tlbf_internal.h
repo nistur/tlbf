@@ -34,6 +34,7 @@
 typedef const char* tlbfInstruction;
 typedef tlbfReturn(*tlbfFunction)(tlbfContext*);
 typedef int tlbfCellIndex;
+typedef int tlbfExtType;
 
 typedef struct _tlbfLoopNode
 {
@@ -41,6 +42,12 @@ typedef struct _tlbfLoopNode
 
     struct _tlbfLoopNode*  m_Next;
 }tlbfLoopNode;
+
+typedef struct _tlbfExtData
+{
+    tlbfExtType m_Type;
+    struct _tlbfExtData* m_Next;
+} tlbfExtData;
 
 /***************************************
  * Library context
@@ -64,6 +71,8 @@ struct _tlbfContext
     tlbfLangFlags   m_Flags;
 
     tlbfFunction    m_Next;
+
+    tlbfExtData*    m_ExtData;
 };
 
 #define TLBF_NULL_CHECK(check, ret) \
@@ -101,8 +110,14 @@ extern const char* g_tlbfErrors[];
 
 TLBF_INTERNAL_EXPORT tlbfReturn tlbfNext(tlbfContext* context);
 
+TLBF_INTERNAL_EXPORT tlbfReturn tlbfAddExtData(tlbfContext* context, tlbfExtData* data, tlbfExtType type);
+TLBF_INTERNAL_EXPORT tlbfReturn tlbfRemoveExtData(tlbfContext* context, tlbfExtData* data);
+TLBF_INTERNAL_EXPORT tlbfReturn tlbfGetExtData(tlbfContext* context, tlbfExtType type, tlbfExtData*** list);
+TLBF_INTERNAL_EXPORT tlbfReturn tlbfFreeExtDataList(tlbfContext* context, tlbfExtData*** list);
+
 #include "tlbf_symbol.h"
 #include "tlbf_bf.h"
 #include "tlbf_ook.h"
+#include "tlbf_pbrain.h"
 
 #endif/*__TLBF_INTERNAL_H__*/

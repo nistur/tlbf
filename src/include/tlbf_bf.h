@@ -20,12 +20,13 @@ static const char tlbfBfCommands[] =
     TLBF_BF_LOOP_START,
     TLBF_BF_LOOP_END,
     TLBF_BF_INPUT,
-    TLBF_BF_OUTPUT
+    TLBF_BF_OUTPUT,
 };
 
 
 TLBF_INTERNAL_EXPORT tlbfReturn tlbfBfInit     (tlbfContext* context, tlbfGetSymbol* getSymbol);
 TLBF_INTERNAL_EXPORT tlbfReturn tlbfBfNext     (tlbfContext* context);
+TLBF_INTERNAL_EXPORT tlbfReturn tlbfBfGetSymbol(tlbfContext* context, tlbfSymbol* symbol);
 
 TLBF_INTERNAL_EXPORT tlbfReturn tlbfBfIncrementCell(tlbfContext* context);
 TLBF_INTERNAL_EXPORT tlbfReturn tlbfBfDecrementCell(tlbfContext* context);

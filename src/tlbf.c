@@ -66,6 +66,11 @@ tlbfReturn tlbfRun(tlbfContext* context)
 	stat = tlbfOokInit(context, &getSymbol);
     }
 
+    if(stat == TLBF_SUCCESS && context->m_Flags & TLBF_EXT_PBRAIN)
+    {
+	stat = tlbfPbrainInit(context, &getSymbol);
+    }
+
     while(stat == TLBF_SUCCESS)
     {
 	tlbfSymbol sym = TLBF_SYMBOL_UNKNOWN;

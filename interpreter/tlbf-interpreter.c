@@ -32,6 +32,11 @@ int main(int argc, char** argv)
 		    case 'O': // Ook
 			flags |= TLBF_LANG_OOK;
 			break;
+
+		    case 'p': // pbrain
+			flags |= TLBF_EXT_PBRAIN;
+			break;
+			
 		    default:
 			showHelp = 1;
 		    }
@@ -43,6 +48,10 @@ int main(int argc, char** argv)
 		if(strcmp(&argv[i][2], "ook") == 0)
 		{
 		    flags |= TLBF_LANG_OOK;
+		}
+		else if(strcmp(&argv[i][2], "pbrain") == 0)
+		{
+		    flags |= TLBF_EXT_PBRAIN;
 		}
 	    }
 	    
