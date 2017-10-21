@@ -1,9 +1,9 @@
 #ifndef __TLBF_PBRAIN_H__
 #define __TLBF_PBRAIN_H__
 
-#define TLBF_PBRAIN_START_PROC '{'
-#define TLBF_PBRAIN_END_PROC   '}'
-#define TLBF_PBRAIN_CALL_PROC  '*'
+#define TLBF_PBRAIN_START_PROC '('
+#define TLBF_PBRAIN_END_PROC   ')'
+#define TLBF_PBRAIN_CALL_PROC  ':'
 
 static const char tlbfPbrainCommands[] =
 {
@@ -22,6 +22,7 @@ typedef struct _tlbfPbrainProc
 {
     tlbfExtData m_Header;
     tlbfInstruction m_Start;
+    tlbfCell m_Name; // actually just a number
 } tlbfPbrainProc;
 
 typedef struct _tlbfPbrainCallstack
